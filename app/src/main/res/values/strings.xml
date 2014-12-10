@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">流量监控</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_main">流量监控</string>
+    <string name="textview_splash">版本号：</string>
+    <string name="title_activity_test">Test</string>
+    <string name="app_icon">应用图标</string>
+    <string name="tv_list_appname">应用名称</string>
+    <string name="tv_list_data">流量</string>
+    <string name="tv_list_rxdata">下载</string>
+    <string name="tv_list_net">联网</string>
+
+</resources>

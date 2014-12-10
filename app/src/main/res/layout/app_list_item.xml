@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!--应用程序图标-->
+        <ImageView android:id="@+id/app_icon"
+            android:layout_width="50dp"
+            android:contentDescription="@string/app_icon"
+            android:layout_height="50dp" />
+        <!--应用程序名字-->
+        <TextView android:id="@+id/app_name"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="8dp"
+            android:textColor="@android:color/black"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <!--应用程序流量-->
+        <TextView android:id="@+id/app_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <net.suool.ui.CheckSwitchButton
+                android:id="@+id/mCheckSwithcButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:enabled="true" />
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/holo_green_light"/>
+
+</LinearLayout>
+

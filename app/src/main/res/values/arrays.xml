@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 运营商列表 -->
+    <string-array name="ListOfInc">
+        <item>移动</item>
+        <item>联通</item>
+        <item>电信</item>
+    </string-array>
+
+    <!-- 业务列表 -->
+    <string-array name="ListOfYD">
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="ListOfLT">
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="ListOfDX">
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="provinceName">
+        <item>北京</item>
+        <item>上海</item>
+        <item>天津</item>
+        <item>重庆</item>
+        <item>安徽</item>
+        <item>福建</item>
+        <item>甘肃</item>
+        <item>广东</item>
+        <item>广西</item>
+        <item>贵州</item>
+        <item>海南</item>
+        <item>河北</item>
+        <item>黑龙江</item>
+        <item>湖北</item>
+        <item>湖南</item>
+        <item>吉林</item>
+        <item>江苏</item>
+        <item>江西</item>
+        <item>辽宁</item>
+        <item>内蒙古</item>
+        <item>宁夏</item>
+        <item>青海</item>
+        <item>山东</item>
+        <item>山西</item>
+        <item>陕西</item>
+        <item>四川</item>
+        <item>西藏</item>
+        <item>新疆</item>
+        <item>云南</item>
+        <item>浙江</item>
+        <item>香港</item>
+        <item>澳门</item>
+        <item>台湾</item>
+    </string-array>
+    <string-array name="gdcityname">
+        <item>广州</item>
+        <item>潮州</item>
+        <item>东莞</item>
+        <item>佛山</item>
+        <item>河源</item>
+        <item>惠州</item>
+        <item>江门</item>
+        <item>揭阳</item>
+        <item>茂名</item>
+        <item>梅州</item>
+        <item>清远</item>
+        <item>汕头</item>
+        <item>汕尾</item>
+        <item>韶关</item>
+        <item>深圳</item>
+        <item>阳江</item>
+        <item>云浮</item>
+        <item>湛江</item>
+        <item>肇庆</item>
+        <item>中山</item>
+        <item>珠海</item>
+    </string-array>
+    <string-array name="setdatename">
+        <item>1号</item>
+        <item>2号</item>
+        <item>3号</item>
+        <item>4号</item>
+        <item>5号</item>
+        <item>6号</item>
+        <item>7号</item>
+        <item>8号</item>
+        <item>9号</item>
+        <item>10号</item>
+        <item>11号</item>
+        <item>12号</item>
+        <item>13号</item>
+        <item>14号</item>
+        <item>15号</item>
+        <item>16号</item>
+        <item>17号</item>
+        <item>18号</item>
+        <item>19号</item>
+        <item>20号</item>
+        <item>21号</item>
+        <item>22号</item>
+        <item>23号</item>
+        <item>24号</item>
+        <item>25号</item>
+        <item>26号</item>
+        <item>27号</item>
+        <item>28号</item>
+        <item>29号</item>
+        <item>30号</item>
+        <item>31号</item>
+    </string-array>
+</resources>
