@@ -79,5 +79,15 @@
             />
     </LinearLayout>
 
+    <HorizontalScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <view
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            class="com.dacer.androidcharts.LineView"
+            android:id="@+id/line_view" />
+    </HorizontalScrollView>
+
 
 </RelativeLayout>

@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import net.suool.application.MyApplication;
+import net.suool.service.BootMonitorService;
+import net.suool.util.enumFlags;
+
 public class BootReceiver extends BroadcastReceiver {
     public BootReceiver() {
     }
 
-    private static final String TAG = "BootReceiver";
+    private static final String TAG = "MyTest";
 
     private static final String ACTION_BOOT = "android.intent.action.BOOT_COMPLETED";
 
@@ -20,7 +24,11 @@ public class BootReceiver extends BroadcastReceiver {
 
         if (intent.getAction().equals(ACTION_BOOT)) {
             Log.i(TAG, "BootBroadcastReceiver onReceive(), Do thing!");
-            Toast.makeText(context, "BootComplete", Toast.LENGTH_SHORT).show();
+            enumFlags.setFlags(-1);
         }
+
+        Intent intentSer = new Intent(context, BootMonitorService.class);
+        context.startService(intentSer);
+
     }
 }

@@ -7,18 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import net.suool.activity.AboutActivity;
-import net.suool.activity.OperatorActivity;
-import net.suool.activity.TcActivity;
 import net.suool.adapter.SettingAdapter;
 import net.suool.mobileflowmonitor.R;
 import net.suool.model.Setting;
-import net.suool.service.MyService;
+import net.suool.service.FlowService;
 import net.suool.ui.CheckSwitchButton;
 
 import java.util.ArrayList;
@@ -83,12 +79,12 @@ public class SettingActivity extends Activity {
         settingList.add(yys);
         SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
         Setting fc;
-        CheckSwitchButton fc_check;
+        fc = new Setting("显示浮窗", true);
         if(!pref.getBoolean("FloatWindowSelection", false)){
-            fc = new Setting("显示浮窗", R.drawable.off);
+            fc.setChecked(false);
         }
         else{
-            fc = new Setting("显示浮窗", R.drawable.on);
+            fc.setChecked(true);
         }
         settingList.add(fc);
         Setting llyj = new Setting("流量预警", 0);
@@ -114,17 +110,17 @@ public class SettingActivity extends Activity {
     //设置浮窗显示
     private void setFloatView(View view){
         ImageView settingImage;
-        settingImage = (ImageView) view.findViewById(R.id.setting_image);
+        //settingImage = (ImageView) view.findViewById(R.id.setting_image);
         SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
         if(pref.getBoolean("FloatWindowSelection", false)){
-            settingImage.setImageResource(R.drawable.off);
-            Intent stopIntent = new Intent(SettingActivity.this, MyService.class);
+            //settingImage.setImageResource(R.drawable.off);
+            Intent stopIntent = new Intent(SettingActivity.this, FlowService.class);
             stopService(stopIntent);
             saveFloatWindowSelection(false);
         }
         else{
-            settingImage.setImageResource(R.drawable.on);
-            Intent startIntent = new Intent(this, MyService.class);
+            //settingImage.setImageResource(R.drawable.on);
+            Intent startIntent = new Intent(this, FlowService.class);
             startService(startIntent);
             saveFloatWindowSelection(true);
         }

@@ -3,13 +3,17 @@
     package="net.suool.mobileflowmonitor"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="14"/>
+    <uses-sdk android:minSdkVersion="14" />
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name="net.suool.application.MyApplication"
@@ -17,9 +21,7 @@
         android:icon="@drawable/wechat_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <activity android:name="org.achartengine.GraphicalActivity"/>
-
+        <activity android:name="org.achartengine.GraphicalActivity" />
         <activity
             android:name="net.suool.activity.SplashActivity"
             android:label="@string/app_name" >
@@ -38,7 +40,6 @@
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name="net.suool.receiver.BootReceiver"
             android:enabled="true"
@@ -53,33 +54,46 @@
             android:enabled="true"
             android:exported="true" >
         </service>
-
-        <service android:name="net.suool.service.MyService"></service>
+        <service android:name="net.suool.service.FlowService" />
 
         <activity
             android:name="net.suool.activity.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main" >
         </activity>
-
+        <activity android:name="net.suool.activity.SettingActivity" >
+        </activity>
+        <activity android:name="net.suool.activity.TcActivity" >
+        </activity>
+        <activity android:name="net.suool.activity.OperatorActivity" >
+        </activity>
+        <activity android:name="net.suool.activity.AboutActivity" >
+        </activity>
         <activity
-            android:name="net.suool.activity.Test"
-            android:label="@string/title_activity_test" >
+            android:name="com.dacer.androidchartsexample.MainActivity"
+            android:label="@string/app_name" >
         </activity>
 
-        <activity android:name="net.suool.activity.SettingActivity">
-        </activity>
+        <service
+            android:name="net.suool.service.ShutDownService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
 
-        <activity android:name="net.suool.activity.TcActivity">
-        </activity>
+        <receiver
+            android:name="net.suool.receiver.BootLongReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
 
-        <activity android:name="net.suool.activity.OperatorActivity">
-        </activity>
+        <receiver
+            android:name="net.suool.receiver.MessageReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
 
-        <activity android:name="net.suool.activity.AboutActivity">
-        </activity>
-
-
-
+        </receiver>
     </application>
 
 </manifest>

@@ -75,7 +75,6 @@ public class MyService extends Service{
     private void createView(){
         myFV = new MyFloatView(getApplicationContext());
         myFV.setText("0.00kb/s");
-        myFV.setBackgroundResource(R.drawable.corner);
         myFV.setTextSize(12);
         myFV.setGravity(Gravity.CENTER_HORIZONTAL);
 

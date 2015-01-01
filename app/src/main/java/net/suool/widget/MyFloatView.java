@@ -1,6 +1,7 @@
 package net.suool.widget;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -53,6 +54,10 @@ public class MyFloatView extends TextView {
         //更新浮动窗口位置参数
         wmParams.x=(int)(x-mTouchStartX);
         wmParams.y=(int)(y-mTouchStartY);
+        SharedPreferences.Editor editor = MyApplication.getmContext().getSharedPreferences("data", MyApplication.getmContext().MODE_PRIVATE).edit();
+        editor.putInt("FloatWindowX", wmParams.x);
+        editor.putInt("FloatWindowY", wmParams.y);
+        editor.apply();
         wm.updateViewLayout(this, wmParams);
     }
 }

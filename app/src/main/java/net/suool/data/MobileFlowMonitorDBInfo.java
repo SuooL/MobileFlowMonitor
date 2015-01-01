@@ -5,7 +5,7 @@ package net.suool.data;
  */
 public class MobileFlowMonitorDBInfo {
     private static String TableNames[] = {
-            "TBL_MONTH_FLOW_CATEGORY", // 月流量记录数据库表
+            "TBL_MONTH_FLOW_CATEGORY",  // 月流量记录数据库表
             "TBL_APP_FLOW_CATEGORY",    // APP月流量记录数据库表
             "TBL_APP_FLAG_CATEGORY"
     };//表名
@@ -18,8 +18,8 @@ public class MobileFlowMonitorDBInfo {
     };//字段名
 
     private static String FieldTypes[][] = {
-            {"INTEGER PRIMARY KEY AUTOINCREMENT", "TEXT", "FLOAT"},
-            {"INTEGER PRIMARY KEY AUTOINCREMENT", "INTEGER", "TEXT", "FLOAT","INTEGER"},
+            {"INTEGER PRIMARY KEY AUTOINCREMENT", "TEXT", "INTEGER"},
+            {"INTEGER PRIMARY KEY AUTOINCREMENT", "INTEGER", "TEXT", "INTEGER","INTEGER"},
             {"INTEGER PRIMARY KEY AUTOINCREMENT", "INTEGER", "INTEGER"}
     };//字段类型
 

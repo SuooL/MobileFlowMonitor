@@ -1,11 +1,15 @@
 package net.suool.activity;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,8 +35,10 @@ import net.suool.mobileflowmonitor.R;
 import net.suool.model.AppInfo;
 import net.suool.model.UpdateInfo;
 import net.suool.provider.TrafficInfoProvider;
+import net.suool.service.BootMonitorService;
 import net.suool.util.DownloadUtil;
 import net.suool.util.UpdateInfoXML;
+import net.suool.util.enumFlags;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -42,6 +49,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SplashActivity extends Activity {
@@ -144,7 +152,7 @@ public class SplashActivity extends Activity {
         // 判断程序是否是第一次的安装的第一次运行
         if (isFir()){
             // 第一次安装的时候创建数据库
-            dbHelper = DBHelper.getInstance(this,"Monitor2.db", null, 2);
+            dbHelper = DBHelper.getInstance(this,"Monitor.db", null, 2);
             // 初始化APP应用联网标志表
             provider = new TrafficInfoProvider(this);
             appInfoList = provider.getTrafficInfos();
@@ -155,10 +163,18 @@ public class SplashActivity extends Activity {
 
         Log.d(TAG, "获取数据库成功.");
 
+        if(! isWorked("net.suool.service.BootMonitorService")){
+            Intent i = new Intent(this, BootMonitorService.class);
+          //  startService(i);
+            enumFlags.setFlags(-1);
+        }
+
 
         // 连接服务器获取服务器上的配置信息.
         new Thread(new CheckVersionTask()) {
         }.start();
+
+
 
     }
 
@@ -413,9 +429,7 @@ public class SplashActivity extends Activity {
    }
 
    public void initData(){
-       SharedPreferences.Editor editor = getSharedPreferences("FlowData", MODE_PRIVATE).edit();
-       editor.putFloat("total",0);
-       editor.putFloat("used", 0);
+
    }
 
    public void initAppDB(List<AppInfo> appInfoList){
@@ -429,4 +443,20 @@ public class SplashActivity extends Activity {
            Log.d(TAG, "数据项插入成功,"+appInfo.getUid());
        }
    }
+
+    private boolean isWorked(String className) {
+        ActivityManager myManager = (ActivityManager) SplashActivity.this
+                .getApplicationContext().getSystemService(
+                        Context.ACTIVITY_SERVICE);
+        ArrayList<ActivityManager.RunningServiceInfo> runningService = (ArrayList<ActivityManager.RunningServiceInfo>) myManager
+                .getRunningServices(30);
+        for (int i = 0; i < runningService.size(); i++) {
+            if (runningService.get(i).service.getClassName().toString()
+                    .equals(className)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

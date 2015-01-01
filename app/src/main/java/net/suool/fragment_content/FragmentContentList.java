@@ -30,6 +30,7 @@ import net.suool.model.AppInfo;
 import net.suool.model.MyOnClickListener;
 import net.suool.provider.TrafficInfoProvider;
 import net.suool.ui.CheckSwitchButton;
+import net.suool.ui.RefreshableView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class FragmentContentList extends Fragment {
     private DBHelper dbHelper = DBHelper.getInstance(MyApplication.getmContext(),"Monitor2.db", null, 2);
     public SQLiteDatabase database = dbHelper.getWritableDatabase();
     private CheckSwitchButton mCheckSwithcButton;
+    RefreshableView refreshableView;
 
     public static List<AppInfo> listApp;
 
@@ -66,6 +68,20 @@ public class FragmentContentList extends Fragment {
         lvAppInfo = (ListView) view.findViewById(R.id.app_list);
 
         lvAppInfo.setAdapter(new TrafficAdapter());
+
+        refreshableView = (RefreshableView) view.findViewById(R.id.refreshable_view);
+
+        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                refreshableView.finishRefreshing();
+            }
+        }, 0);
 
         if(! isRoot()){
             Toast.makeText(MyApplication.getmContext(), "您的手机没有Root，无法限制应用联网权限", Toast.LENGTH_SHORT).show();
@@ -118,7 +134,7 @@ public class FragmentContentList extends Fragment {
                         // 状态开， 数据库中更新该APP可以联网
                         database.execSQL("update TBL_APP_FLAG_CATEGORY set FLAG =? where UID =? ",
                                 new String[]{"1", String.valueOf(info.getUid())});
-                       // Toast.makeText(MyApplication.getmContext(), info.getAppname()+info.getUid()+"允许联网", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MyApplication.getmContext(), info.getAppname()+info.getUid()+"允许联网", Toast.LENGTH_SHORT).show();
                     }else{
                         // 状态关， 数据库中更新该APP不可以联网
                         database.execSQL("update TBL_APP_FLAG_CATEGORY set FLAG =? where UID =? ",
@@ -132,13 +148,13 @@ public class FragmentContentList extends Fragment {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 mCheckSwithcButton.setChecked(cursor.getInt(cursor.getColumnIndex("FLAG")) == 1);
-                Log.d(TAG, "数据库查询成功"+info.getUid()+" flag "+cursor.getInt(cursor.getColumnIndex("FLAG")));
+             //   Log.d(TAG, "数据库查询成功"+info.getUid()+" flag "+cursor.getInt(cursor.getColumnIndex("FLAG")));
             } else{
                 ContentValues values = new ContentValues();
                 values.put("UID", info.getUid());
                 values.put("FLAG", 1);
                 database.insert("TBL_APP_FLAG_CATEGORY", null, values);
-                Log.d(TAG, "数据库插入更新成功"+info.getUid());
+             //   Log.d(TAG, "数据库插入更新成功"+info.getUid());
                 mCheckSwithcButton.setChecked(true);
             }
 

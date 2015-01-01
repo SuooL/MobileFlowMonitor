@@ -24,13 +24,13 @@ public class TcActivity extends Activity{
         total = (EditText)findViewById(R.id.totalFlow);
         rest = (EditText)findViewById(R.id.restFlow);
         confirm = (Button) findViewById(R.id.Btn_Tc);
-        final int totalflow = pref.getInt("TotalFlow", 0);
-        int restflow = pref.getInt("RestFlow", 0);
+        float totalflow = pref.getFloat("TotalFlow", 0);
+        float restflow = pref.getFloat("RestFlow", 0);
         if(totalflow!=0) {
-            total.setText(Integer.toString(totalflow));
+            total.setText(Float.toString(totalflow));
         }
         if(restflow!=0) {
-            rest.setText(Integer.toString(restflow));
+            rest.setText(Float.toString(restflow));
         }
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,17 +38,17 @@ public class TcActivity extends Activity{
                 SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
                 String totalValue = total.getText().toString();
                 if(totalValue.length()!=0) {
-                    editor.putInt("TotalFlow", Integer.parseInt(totalValue));
+                    editor.putFloat("TotalFlow", Float.parseFloat(totalValue));
                 }
                 else{
-                    editor.putInt("TotalFlow", 0);
+                    editor.putFloat("TotalFlow", 0);
                 }
                 String restValue = rest.getText().toString();
                 if(restValue.length()!=0) {
-                    editor.putInt("RestFlow", Integer.parseInt(restValue));
+                    editor.putFloat("RestFlow", Float.parseFloat(restValue));
                 }
                 else{
-                    editor.putInt("RestFlow", 0);
+                    editor.putFloat("RestFlow", 0);
                 }
                 editor.apply();
                 finish();

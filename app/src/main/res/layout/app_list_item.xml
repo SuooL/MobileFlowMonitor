@@ -16,12 +16,12 @@
 
         <!--应用程序图标-->
         <ImageView android:id="@+id/app_icon"
-            android:layout_width="50dp"
+            android:layout_width="45dp"
             android:contentDescription="@string/app_icon"
-            android:layout_height="50dp" />
+            android:layout_height="45dp" />
         <!--应用程序名字-->
         <TextView android:id="@+id/app_name"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginTop="12dp"
@@ -33,7 +33,7 @@
 
         <!--应用程序流量-->
         <TextView android:id="@+id/app_data"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginTop="13dp"
